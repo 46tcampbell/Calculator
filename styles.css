@@ -6,8 +6,31 @@ h1 {
   color: blue;
 }
 
+button {
+  width: 100px;
+  height: 50px;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 400px;
+}
+
 #calc-display {
-  display: inline;
+  display: inline-flex;
   border: 1px solid black;
   background-color: white;
+  flex: 1;
+  font-size: 35px;
+}
+
+#calc-display-row,
+#top-row,
+#second-row,
+#third-row,
+#bottom-row {
+  display: flex;
+  justify-content: space-evenly;
 }
