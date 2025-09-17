@@ -49,7 +49,7 @@ btn0.addEventListener('click', () => {
     (calcNum1 && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '0';
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '0';
   }
@@ -73,7 +73,7 @@ btn1.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '1';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '1';
   }
@@ -97,7 +97,7 @@ btn2.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '2';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '2';
   }
@@ -121,7 +121,7 @@ btn3.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '3';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '3';
   }
@@ -145,7 +145,7 @@ btn4.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '4';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '4';
   }
@@ -169,7 +169,7 @@ btn5.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '5';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '5';
   }
@@ -193,7 +193,7 @@ btn6.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '6';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '6';
   }
@@ -217,7 +217,7 @@ btn7.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '7';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '7';
   }
@@ -241,7 +241,7 @@ btn8.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '8';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '8';
   }
@@ -265,7 +265,7 @@ btn9.addEventListener('click', () => {
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '9';
     calcNum2 = null;
-  } else if (calcDisplay.textContent.length >= 17) {
+  } else if (calcDisplay.textContent.length >= 10) {
   } else {
     calcDisplay.textContent += '9';
   }
@@ -291,10 +291,10 @@ btnDivide.addEventListener('click', () => {
     calcNum2 = Number(calcDisplay.textContent);
     calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
     if (
-      calcDisplay.textContent.length >= 17 &&
+      calcDisplay.textContent.length >= 10 &&
       calcDisplay.textContent.includes('.')
     ) {
-      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(15);
+      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
@@ -330,10 +330,10 @@ btnMultiply.addEventListener('click', () => {
     calcNum2 = Number(calcDisplay.textContent);
     calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
     if (
-      calcDisplay.textContent.length >= 17 &&
+      calcDisplay.textContent.length >= 10 &&
       calcDisplay.textContent.includes('.')
     ) {
-      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(15);
+      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
@@ -369,10 +369,10 @@ btnAdd.addEventListener('click', () => {
     calcNum2 = Number(calcDisplay.textContent);
     calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
     if (
-      calcDisplay.textContent.length >= 17 &&
+      calcDisplay.textContent.length >= 10 &&
       calcDisplay.textContent.includes('.')
     ) {
-      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(15);
+      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
@@ -408,10 +408,10 @@ btnSubtract.addEventListener('click', () => {
     calcNum2 = Number(calcDisplay.textContent);
     calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
     if (
-      calcDisplay.textContent.length >= 17 &&
+      calcDisplay.textContent.length >= 10 &&
       calcDisplay.textContent.includes('.')
     ) {
-      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(15);
+      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
@@ -438,10 +438,10 @@ btnEquals.addEventListener('click', () => {
     calcNum2 = Number(calcDisplay.textContent);
     calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
     if (
-      calcDisplay.textContent.length >= 17 &&
+      calcDisplay.textContent.length >= 10 &&
       calcDisplay.textContent.includes('.')
     ) {
-      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(15);
+      calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
     }
     calcNum1 = undefined;
     calcNum2 = undefined;
@@ -468,6 +468,14 @@ clear.addEventListener('click', () => {
   calcNum1 = undefined;
   calcNum2 = undefined;
   calcOperator = undefined;
+});
+
+const backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', () => {
+  const currentDisplay = calcDisplay.textContent;
+  const displayLength = calcDisplay.textContent.length - 1;
+  const newDisplay = currentDisplay.slice(0, displayLength);
+  calcDisplay.textContent = newDisplay;
 });
 
 // console.log(operate(calcNum1, calcNum2, calcOperator));
