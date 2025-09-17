@@ -281,7 +281,6 @@ btnDivide.addEventListener('click', () => {
   ) {
     calcNum1 = Number(calcDisplay.textContent);
     calcOperator = 'forwardSlash';
-    // calcDisplay.textContent += ' /';
   } else if (
     calcDisplay.textContent &&
     calcNum1 &&
@@ -320,7 +319,6 @@ btnMultiply.addEventListener('click', () => {
   ) {
     calcNum1 = Number(calcDisplay.textContent);
     calcOperator = 'asterisk';
-    // calcDisplay.textContent += ' /';
   } else if (
     calcDisplay.textContent &&
     calcNum1 &&
@@ -359,7 +357,6 @@ btnAdd.addEventListener('click', () => {
   ) {
     calcNum1 = Number(calcDisplay.textContent);
     calcOperator = 'plus';
-    // calcDisplay.textContent += ' /';
   } else if (
     calcDisplay.textContent &&
     calcNum1 &&
@@ -398,7 +395,6 @@ btnSubtract.addEventListener('click', () => {
   ) {
     calcNum1 = Number(calcDisplay.textContent);
     calcOperator = 'minus';
-    // calcDisplay.textContent += ' /';
   } else if (
     calcDisplay.textContent &&
     calcNum1 &&
@@ -468,14 +464,437 @@ clear.addEventListener('click', () => {
   calcNum1 = undefined;
   calcNum2 = undefined;
   calcOperator = undefined;
+  btnPeriod.disabled = false;
 });
 
 const backspace = document.querySelector('#backspace');
 backspace.addEventListener('click', () => {
   const currentDisplay = calcDisplay.textContent;
+  const potentialPeriod = currentDisplay.slice(-1);
   const displayLength = calcDisplay.textContent.length - 1;
   const newDisplay = currentDisplay.slice(0, displayLength);
   calcDisplay.textContent = newDisplay;
+  if (potentialPeriod === '.') {
+    btnPeriod.disabled = false;
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  console.log(e.key);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace') {
+    const currentDisplay = calcDisplay.textContent;
+    const potentialPeriod = currentDisplay.slice(-1);
+    const displayLength = calcDisplay.textContent.length - 1;
+    const newDisplay = currentDisplay.slice(0, displayLength);
+    calcDisplay.textContent = newDisplay;
+    if (potentialPeriod === '.') {
+      btnPeriod.disabled = false;
+    }
+  }
+  if (e.key === 'Delete') {
+    calcDisplay.textContent = '';
+    calcNum1 = undefined;
+    calcNum2 = undefined;
+    calcOperator = undefined;
+    btnPeriod.disabled = false;
+  }
+  if (e.key === '.') {
+    if (calcDisplay.textContent && !calcDisplay.textContent.includes('.')) {
+      calcDisplay.textContent += '.';
+      btnPeriod.disabled = true;
+    } else if (!calcDisplay.textContent) {
+      calcDisplay.textContent += '0.';
+      btnPeriod.disabled = true;
+    }
+  }
+  if (e.key === '=' || e.key === 'Enter') {
+    if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      (calcNum2 === undefined || calcNum2 === null) &&
+      calcOperator
+    ) {
+      calcNum2 = Number(calcDisplay.textContent);
+      calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
+      if (
+        calcDisplay.textContent.length >= 10 &&
+        calcDisplay.textContent.includes('.')
+      ) {
+        calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
+      }
+      calcNum1 = undefined;
+      calcNum2 = undefined;
+      calcOperator = undefined;
+      isReturnedValue = true;
+      btnPeriod.disabled = false;
+    }
+  }
+  if (e.key === '/') {
+    if (
+      calcDisplay.textContent &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcNum1 = Number(calcDisplay.textContent);
+      calcOperator = 'forwardSlash';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === null &&
+      calcOperator
+    ) {
+      calcNum2 = Number(calcDisplay.textContent);
+      calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
+      if (
+        calcDisplay.textContent.length >= 10 &&
+        calcDisplay.textContent.includes('.')
+      ) {
+        calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
+      }
+      calcNum1 = Number(calcDisplay.textContent);
+      calcNum2 = undefined;
+      calcOperator = 'forwardSlash';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === undefined &&
+      calcOperator
+    ) {
+      calcOperator = 'forwardSlash';
+    }
+    btnPeriod.disabled = false;
+  }
+  if (e.key === '*') {
+    if (
+      calcDisplay.textContent &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcNum1 = Number(calcDisplay.textContent);
+      calcOperator = 'asterisk';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === null &&
+      calcOperator
+    ) {
+      calcNum2 = Number(calcDisplay.textContent);
+      calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
+      if (
+        calcDisplay.textContent.length >= 10 &&
+        calcDisplay.textContent.includes('.')
+      ) {
+        calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
+      }
+      calcNum1 = Number(calcDisplay.textContent);
+      calcNum2 = undefined;
+      calcOperator = 'asterisk';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === undefined &&
+      calcOperator
+    ) {
+      calcOperator = 'asterisk';
+    }
+    btnPeriod.disabled = false;
+  }
+  if (e.key === '+') {
+    if (
+      calcDisplay.textContent &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcNum1 = Number(calcDisplay.textContent);
+      calcOperator = 'plus';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === null &&
+      calcOperator
+    ) {
+      calcNum2 = Number(calcDisplay.textContent);
+      calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
+      if (
+        calcDisplay.textContent.length >= 10 &&
+        calcDisplay.textContent.includes('.')
+      ) {
+        calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
+      }
+      calcNum1 = Number(calcDisplay.textContent);
+      calcNum2 = undefined;
+      calcOperator = 'plus';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === undefined &&
+      calcOperator
+    ) {
+      calcOperator = 'plus';
+    }
+    btnPeriod.disabled = false;
+  }
+  if (e.key === '-') {
+    if (
+      calcDisplay.textContent &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcNum1 = Number(calcDisplay.textContent);
+      calcOperator = 'minus';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === null &&
+      calcOperator
+    ) {
+      calcNum2 = Number(calcDisplay.textContent);
+      calcDisplay.textContent = operate(calcNum1, calcNum2, calcOperator);
+      if (
+        calcDisplay.textContent.length >= 10 &&
+        calcDisplay.textContent.includes('.')
+      ) {
+        calcDisplay.textContent = Number(calcDisplay.textContent).toFixed(9);
+      }
+      calcNum1 = Number(calcDisplay.textContent);
+      calcNum2 = undefined;
+      calcOperator = 'minus';
+    } else if (
+      calcDisplay.textContent &&
+      calcNum1 &&
+      calcNum2 === undefined &&
+      calcOperator
+    ) {
+      calcOperator = 'minus';
+    }
+    btnPeriod.disabled = false;
+  }
+  if (e.key == 0) {
+    if (calcNum1 && calcNum2 === undefined && calcOperator === 'forwardSlash') {
+      return alert(`Hey, you can't divide by 0 you Silly Sally`);
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '0';
+      isReturnedValue = false;
+    } else if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '0';
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '0';
+    }
+  }
+  if (e.key == 1) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '1';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '1';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '1';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '1';
+    }
+  }
+  if (e.key == 2) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '2';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '2';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '2';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '2';
+    }
+  }
+  if (e.key == 3) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '3';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '3';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '3';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '3';
+    }
+  }
+  if (e.key == 4) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '4';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '4';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '4';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '4';
+    }
+  }
+  if (e.key == 5) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '5';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '5';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '5';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '5';
+    }
+  }
+  if (e.key == 6) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '6';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '6';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '6';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '6';
+    }
+  }
+  if (e.key == 7) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '7';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '7';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '7';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '7';
+    }
+  }
+  if (e.key == 8) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '8';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '8';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '8';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '8';
+    }
+  }
+  if (e.key == 9) {
+    if (
+      calcDisplay.textContent === '0' ||
+      (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
+    ) {
+      calcDisplay.textContent = '9';
+    } else if (
+      isReturnedValue === true &&
+      calcNum1 === undefined &&
+      calcNum2 === undefined &&
+      calcOperator === undefined
+    ) {
+      calcDisplay.textContent = '9';
+      isReturnedValue = false;
+    } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
+      calcDisplay.textContent = '9';
+      calcNum2 = null;
+    } else if (calcDisplay.textContent.length >= 10) {
+    } else {
+      calcDisplay.textContent += '9';
+    }
+  }
 });
 
 // console.log(operate(calcNum1, calcNum2, calcOperator));
