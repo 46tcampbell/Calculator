@@ -218,6 +218,13 @@ btnDivide.addEventListener('click', () => {
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
     calcOperator = 'forwardSlash';
+  } else if (
+    calcDisplay.textContent &&
+    calcNum1 &&
+    calcNum2 === undefined &&
+    calcOperator
+  ) {
+    calcOperator = 'forwardSlash';
   }
 });
 
@@ -248,6 +255,13 @@ btnMultiply.addEventListener('click', () => {
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
+    calcOperator = 'asterisk';
+  } else if (
+    calcDisplay.textContent &&
+    calcNum1 &&
+    calcNum2 === undefined &&
+    calcOperator
+  ) {
     calcOperator = 'asterisk';
   }
 });
@@ -280,6 +294,13 @@ btnAdd.addEventListener('click', () => {
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
     calcOperator = 'plus';
+  } else if (
+    calcDisplay.textContent &&
+    calcNum1 &&
+    calcNum2 === undefined &&
+    calcOperator
+  ) {
+    calcOperator = 'plus';
   }
 });
 
@@ -310,6 +331,13 @@ btnSubtract.addEventListener('click', () => {
     }
     calcNum1 = Number(calcDisplay.textContent);
     calcNum2 = undefined;
+    calcOperator = 'minus';
+  } else if (
+    calcDisplay.textContent &&
+    calcNum1 &&
+    calcNum2 === undefined &&
+    calcOperator
+  ) {
     calcOperator = 'minus';
   }
 });
