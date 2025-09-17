@@ -1,9 +1,14 @@
 body {
-  background-color: aquamarine;
+  background-color: #70cad1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  flex-direction: column;
 }
 
 h1 {
-  color: blue;
+  color: #c3669c;
 }
 
 button {
