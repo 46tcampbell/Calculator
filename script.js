@@ -307,6 +307,7 @@ btnDivide.addEventListener('click', () => {
   ) {
     calcOperator = 'forwardSlash';
   }
+  btnPeriod.disabled = false;
 });
 
 const btnMultiply = document.querySelector('#btnMultiply');
@@ -345,6 +346,7 @@ btnMultiply.addEventListener('click', () => {
   ) {
     calcOperator = 'asterisk';
   }
+  btnPeriod.disabled = false;
 });
 
 const btnAdd = document.querySelector('#btnAdd');
@@ -383,6 +385,7 @@ btnAdd.addEventListener('click', () => {
   ) {
     calcOperator = 'plus';
   }
+  btnPeriod.disabled = false;
 });
 
 const btnSubtract = document.querySelector('#btnSubtract');
@@ -421,6 +424,7 @@ btnSubtract.addEventListener('click', () => {
   ) {
     calcOperator = 'minus';
   }
+  btnPeriod.disabled = false;
 });
 
 const btnEquals = document.querySelector('#btnEquals');
@@ -443,6 +447,18 @@ btnEquals.addEventListener('click', () => {
     calcNum2 = undefined;
     calcOperator = undefined;
     isReturnedValue = true;
+    btnPeriod.disabled = false;
+  }
+});
+
+const btnPeriod = document.querySelector('#btnPeriod');
+btnPeriod.addEventListener('click', () => {
+  if (calcDisplay.textContent && !calcDisplay.textContent.includes('.')) {
+    calcDisplay.textContent += '.';
+    btnPeriod.disabled = true;
+  } else if (!calcDisplay.textContent) {
+    calcDisplay.textContent += '0.';
+    btnPeriod.disabled = true;
   }
 });
 
