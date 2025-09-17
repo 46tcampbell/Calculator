@@ -1,6 +1,7 @@
 let calcNum1 = undefined;
 let calcOperator = undefined;
 let calcNum2 = undefined;
+let isReturnedValue = false;
 
 function add(num1, num2) {
   return num1 + num2;
@@ -36,6 +37,14 @@ btn0.addEventListener('click', () => {
   if (calcNum1 && calcNum2 === undefined && calcOperator === 'forwardSlash') {
     return alert(`Hey, you can't divide by 0 you Silly Sally`);
   } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '0';
+    isReturnedValue = false;
+  } else if (
     calcDisplay.textContent === '0' ||
     (calcNum1 && calcNum2 === undefined)
   ) {
@@ -53,6 +62,14 @@ btn1.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '1';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '1';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '1';
     calcNum2 = null;
@@ -69,6 +86,14 @@ btn2.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '2';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '2';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '2';
     calcNum2 = null;
@@ -85,6 +110,14 @@ btn3.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '3';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '3';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '3';
     calcNum2 = null;
@@ -101,6 +134,14 @@ btn4.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '4';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '4';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '4';
     calcNum2 = null;
@@ -117,6 +158,14 @@ btn5.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '5';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '5';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '5';
     calcNum2 = null;
@@ -133,6 +182,14 @@ btn6.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '6';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '6';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '6';
     calcNum2 = null;
@@ -149,6 +206,14 @@ btn7.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '7';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '7';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '7';
     calcNum2 = null;
@@ -165,6 +230,14 @@ btn8.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '8';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '8';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '8';
     calcNum2 = null;
@@ -181,6 +254,14 @@ btn9.addEventListener('click', () => {
     (calcNum1 && calcOperator === undefined && calcNum2 === undefined)
   ) {
     calcDisplay.textContent = '9';
+  } else if (
+    isReturnedValue === true &&
+    calcNum1 === undefined &&
+    calcNum2 === undefined &&
+    calcOperator === undefined
+  ) {
+    calcDisplay.textContent = '9';
+    isReturnedValue = false;
   } else if (calcNum1 && calcOperator && calcNum2 === undefined) {
     calcDisplay.textContent = '9';
     calcNum2 = null;
@@ -360,6 +441,8 @@ btnEquals.addEventListener('click', () => {
     }
     calcNum1 = undefined;
     calcNum2 = undefined;
+    calcOperator = undefined;
+    isReturnedValue = true;
   }
 });
 
