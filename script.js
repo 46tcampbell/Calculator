@@ -33,7 +33,12 @@ function operate(num1, num2, operator) {
 const calcDisplay = document.querySelector('#calc-display');
 const btn0 = document.querySelector('#btn0');
 btn0.addEventListener('click', () => {
-  if (calcDisplay.textContent === '0' || (calcNum1 && calcNum2 === undefined)) {
+  if (calcNum1 && calcNum2 === undefined && calcOperator === 'forwardSlash') {
+    return alert(`Hey, you can't divide by 0 you Silly Sally`);
+  } else if (
+    calcDisplay.textContent === '0' ||
+    (calcNum1 && calcNum2 === undefined)
+  ) {
     calcDisplay.textContent = '0';
   } else if (calcDisplay.textContent.length >= 17) {
   } else {
